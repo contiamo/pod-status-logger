@@ -45,6 +45,8 @@ func watchPods(kbc *kubernetes.Clientset) {
 func getLogger(pod *v1.Pod) *logrus.Entry {
 	fields := make(logrus.Fields)
 	fields["pod"] = pod.ObjectMeta.Name
+	fields["namespace"] = pod.ObjectMeta.Namespace
+	fields["cluster"] = pod.ObjectMeta.ClusterName
 	for k, v := range pod.ObjectMeta.Labels {
 		fields[k] = v
 	}
