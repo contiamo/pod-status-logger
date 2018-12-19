@@ -6,7 +6,7 @@ RUN go get -v github.com/golang/dep/cmd/dep
 WORKDIR /go/src/github.com/contiamo/pod-status-logger
 COPY ./*.go ,/Gopkg.* ./
 COPY ./vendor ./vendor
-# RUN dep ensure -v --vendor-only
+RUN dep ensure -v --vendor-only
 RUN CGO_ENABLED=0 GOOS=linux go install -v -ldflags "-extldflags \"-static\"" github.com/contiamo/pod-status-logger
 
 # create actual build artifact
